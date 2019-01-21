@@ -11,6 +11,13 @@ import java.io.IOException;
 public class RemoteView {
 
 	public static void main(String[] args) {
+		
+		radio radio = new radio();
+		television television = new television();
+		radio.initDevice();
+		television.initDevice();
+		
+		/********************************Graphic part**********************************/
 		// TODO Auto-generated method stub
 		
 //		mainframe marco1 = new mainframe();
@@ -77,10 +84,10 @@ class Sheet extends JPanel implements ActionListener {
 	JButton ButtonAll = new JButton("On/Off");
 	JButton ButtonUndo = new JButton("<=");
 	
-	JLabel textVolTV = new JLabel("0");
-	JLabel textChTV = new JLabel("0");
-	JLabel textVolRadio = new JLabel("0");
-	JLabel textChRadio = new JLabel("0");
+	JLabel textVolTV = new JLabel("5");
+	JLabel textChTV = new JLabel("5");
+	JLabel textVolRadio = new JLabel("5");
+	JLabel textChRadio = new JLabel("5");
 	
 	int total = 0;
 	
@@ -156,10 +163,11 @@ class Sheet extends JPanel implements ActionListener {
 		Object pressedButton = e.getSource();
 		
 		if(pressedButton == ButtonTvVolUp ) {
-			System.out.println("Pressed button");
-			total++;
 			
-			textVolTV.setText(Integer.toString(total));
+			television.setVolume(television.volume+television.tempVolume+1);
+            radio.notUndo();
+            System.out.println(television.getVolume());
+			textVolTV.setText(Integer.toString(television.getVolume()));
 		}
 		if(pressedButton == ButtonTvVolDown ) {
 			System.out.println("Pressed button");	

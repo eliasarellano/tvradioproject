@@ -20,6 +20,9 @@ public abstract class device {
 		this.testLoop();
 	}
 	int getVolume() {
+		return this.volume;
+	}
+	int getTotalVolume() {
 		return this.volume + this.tempVolume;
 	}
 	void setChannel(int channel) {
@@ -28,7 +31,10 @@ public abstract class device {
 		this.testLoop();
 	}
 	int getChannel() {
-		return this.channel + this.tempChannel;
+		return this.channel;
+	}
+	int getTotalChannel() {
+		return this.channel+this.tempChannel;
 	}
 	String getName() {
 		return this.name;
@@ -68,7 +74,7 @@ public abstract class device {
 	
 	public final void undo() {                        //Undo set to 0 every tempValue, because each time channel or volume is changed, the notUndo is
 		if(this.tempChannel+this.tempVolume==0)       //called, there is only one non null tempValue which is nullified   
-			System.out.println("nothing to undo");
+		
 		if(this.testLoop)
 			this.channel=((this.channel-1)/9-1)*-9+1; //Transform channel 10 into channel 1 and reciprocally (you can calculate to verify if you want)
 		this.tempChannel=0;
